@@ -13,7 +13,7 @@ def send_image(img):
   img_json = json.dumps({'image': img_byte}).encode('utf-8')
 
   # HTTPリクエストを送信
-  response = requests.post("http://localhost:8080/save", data=img_json)
+  response = requests.post("http://172.26.16.6/save", data=img_json)
   print('{0} {1}'.format(response.status_code, json.loads(response.text)["message"]))
 
 # if __name__ == '__main__':

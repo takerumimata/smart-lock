@@ -46,4 +46,4 @@ def save_image():
     return Response(response=json.dumps({"message": "{} was saved".format(filename)}), status=200)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='172.26.16.6', port=8080)
