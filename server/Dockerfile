@@ -16,10 +16,3 @@ RUN apt-get update -y && apt-get install -y libopencv-dev \
 RUN apt update -y  && apt install curl -y
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 RUN python3 get-pip.py
-# TensorflowとOpencvのインストール
-RUN pip3 install numpy tensorflow-gpu opencv-python
-
-# kerasとsklearnのインストール
-RUN pip3 install keras
-RUN pip3 install scikit-learn
-RUN pip3 install pillow
