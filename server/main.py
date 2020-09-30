@@ -9,6 +9,8 @@ from datetime import datetime
 from flask import Flask, request, Response
 from PIL import Image
 from flask import Flask, request, Response
+import json
+import urllib.request
 app = Flask(__name__)
 count = 0
 
@@ -44,7 +46,22 @@ def predict_and_open():
     img = np.asarray(img)
     img = img / 255.0
     prd = model.predict(np.array([img]))
+    is_accept = prd[0][0]
+    if is_accept > 0.9:
+        url = 'https://api.candyhouse.co/public/sesame/{device_id}'
 
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': '{our_api_key}',
+        }
+
+        data = {
+            "command": "unlock",
+        }
+
+        req = urllib.request.Request(url, json.dumps(data).encode(), headers)
+        with urllib.request.urlopen(req) as res:
+            body = res.read()
     # HTTPレスポンスを送信
     return Response(response=json.dumps({"message": "{} is prediction".format(prd)}), status=200)
 
